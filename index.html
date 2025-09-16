@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <style>html,body{background:#141416;}</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Наш маленький квест</title>
+  <meta name="description" content="Маленькое интерактивное путешествие по нашим воспоминаниям" />
+  <link rel="preload" as="style" href="assets/css/style.css" />
+  <link rel="stylesheet" href="assets/css/style.css" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/img/logo.png" />
+  <link rel="apple-touch-icon" href="assets/img/logo.png" />
+  <meta name="theme-color" content="#141416" />
+  <meta name="color-scheme" content="dark light" />
+</head>
+<body class="with-docked-progress no-scroll">
+  <!-- Gate overlay: ввод фразы-доступа -->
+  <div id="gateOverlay" class="gate-overlay" aria-modal="true" role="dialog" aria-labelledby="gateTitle">
+    <div class="gate-box">
+      <h2 id="gateTitle">Небольшой пароль любви</h2>
+      <p class="gate-hint">Введи особенную фразу, и мир воспоминаний откроется.</p>
+      <input id="gateInput" type="text" autocomplete="off" placeholder="Фраза" />
+      <div class="gate-actions">
+        <button id="gateEnter" class="primary">Войти</button>
+      </div>
+      <div id="gateError" class="gate-error" aria-live="assertive" hidden>Неверно. Попробуй ещё.</div>
+    </div>
+  </div>
+
+  <canvas id="bg-hearts" aria-hidden="true"></canvas>
+  <header class="hero" id="hero">
+    <h1>3 года вместе</h1>
+    <p class="subtitle">Мини-квест о нас. Пройди все этапы, чтобы открыть сюрприз ❤️</p>
+    <button id="startBtn" class="primary">Начать</button>
+  </header>
+
+  <main id="main" hidden>
+    <section id="timeline" class="block">
+      <h2>Наш таймлайн</h2>
+      <div class="timeline-items" id="timelineItems"></div>
+    </section>
+
+    <section id="artifacts" class="block">
+      <h2>Артефакты</h2>
+      <div class="grid" id="artifactGrid"></div>
+    </section>
+
+    <section id="map" class="block">
+      <h2>Карта моментов</h2>
+      <div id="mapArea" class="map-area">
+        <div class="map-points" id="mapPoints"></div>
+      </div>
+    </section>
+
+    <section id="puzzleHub" class="block">
+      <h2>Пазлы</h2>
+      <div id="puzzleList" class="puzzle-list"></div>
+    </section>
+
+    <section id="progress" class="block docked">
+      <h2>Прогресс</h2>
+      <div class="progress-bar"><div id="progressFill"></div></div>
+      <div id="keyDisplay" class="key-display"></div>
+    </section>
+  </main>
+
+  <div id="finalLetter" class="final-letter hidden" aria-hidden="true">
+    <div class="letter-wrapper">
+      <div class="letter" id="letterContent">
+        <h3>Что нужно делать?</h3>
+        <p>Собери все буквы, чтобы открыть сюрприз =)</p>
+  <button id="closeInitialLetter" class="secondary" style="margin-top:1rem;">Закрыть</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="resultOverlay" class="qr-overlay hidden" aria-hidden="true">
+    <div class="qr-inner">
+      <img id="finalImage" src="assets/img/qr.png" alt="Surprise" style="max-width:100%;border-radius:16px;" />
+      <button id="closeResult" class="secondary" style="margin-top:1rem;">Закрыть</button>
+    </div>
+  </div>
+
+  <template id="tpl-puzzle-item">
+    <div class="puzzle-item">
+      <h3 class="p-title"></h3>
+      <div class="p-body"></div>
+      <div class="p-actions"></div>
+      <div class="p-meta"></div>
+    </div>
+  </template>
+
+  <script src="assets/js/app.js" type="module"></script>
+</body>
+</html>
